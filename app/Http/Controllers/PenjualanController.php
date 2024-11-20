@@ -81,11 +81,23 @@ class PenjualanController extends Controller
         $penjualan->diskon = $request->diskon;
         $penjualan->bayar = $request->bayar;
         $penjualan->diterima = $request->diterima;
-        $penjualan->update();
 
         $notifications = []; // Array untuk menyimpan notifikasi stok rendah
 
         $detail = PenjualanDetail::where('id_penjualan', $penjualan->id_penjualan)->get();
+
+        // Validasi stok sebelum melanjutkan
+        foreach ($detail as $item) {
+            $produk = Produk::find($item->id_produk);
+
+            if (!$produk || $produk->stok < $item->jumlah) {
+                return view('penjualan.error', [
+                    'message' => "Transaksi tidak berhasil. Stok produk {$produk->nama_produk} tidak mencukupi. Stok tersedia: {$produk->stok}.",
+                ]);
+            }
+        }
+
+        // Jika stok mencukupi, lanjutkan proses penyimpanan
         foreach ($detail as $item) {
             $item->diskon = $request->diskon;
             $item->update();
@@ -100,6 +112,8 @@ class PenjualanController extends Controller
             }
         }
 
+        $penjualan->update();
+
         // Simpan notifikasi ke dalam sesi
         if (!empty($notifications)) {
             session()->flash('low_stock_notifications', $notifications);
@@ -107,6 +121,7 @@ class PenjualanController extends Controller
 
         return redirect()->route('transaksi.selesai');
     }
+
 
     public function show($id)
     {

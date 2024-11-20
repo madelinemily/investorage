@@ -61,7 +61,7 @@
               <li class="user-header">
                 <img src="{{ url(auth()->user()->foto ?? '') }}" class="img-circle img-profil" alt="User Image">
 
-                <p>
+                <p style="color: black;">
                   {{ auth()->user()->name }} - {{ auth()->user()->email }}
                 </p>
               </li>

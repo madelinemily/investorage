@@ -71,7 +71,7 @@
         <li class="header">SYSTEM</li>
 
         <li>
-          <a href="#">
+          <a href="{{ route('user.index') }}">
             <i class="fa fa-users"></i> <span>User</span>
           </a>
         </li>
@@ -81,11 +81,16 @@
             <i class="fa fa-cogs"></i> <span>Pengaturan</span>
           </a>
         </li>
-
         @else
         <li>
-          <a href="{{ route('produk.index') }}">
-            <i class="fa fa-dashboard"></i> <span>Produk</span>
+          <a href="{{ route('transaksi.index')}}">
+            <i class="fa fa-cart-arrow-down"></i> <span>Transaksi Lama</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{{ route('transaksi.baru')}}">
+            <i class="fa fa-cart-arrow-down"></i> <span>Transaksi Baru</span>
           </a>
         </li>
         @endif

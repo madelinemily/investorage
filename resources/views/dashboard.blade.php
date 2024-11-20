@@ -10,14 +10,11 @@
 @endsection
 
 @section('content')
-<!-- Small boxes (Stat box) -->
 <div class="row">
     <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
         <div class="small-box">
             <div class="inner">
                 <h3>{{ $kategori }}</h3>
-
                 <p>Total Kategori</p>
             </div>
             <div class="icon d-flex justify-content-center align-items-center rounded-circle" style="width: 70px; height: 70px; background-color: #2E4492;">
@@ -26,9 +23,7 @@
             <a href="{{ route('kategori.index') }}" class="small-box-footer">Lihat <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
-    <!-- ./col -->
     <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
         <div class="small-box">
             <div class="inner">
                 <h3>{{ $produk }}</h3>
