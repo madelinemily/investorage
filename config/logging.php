@@ -85,14 +85,13 @@ return [
         'papertrail' => [
             'driver' => 'monolog',
             'level' => env('LOG_LEVEL', 'debug'),
-            'handler' => env('LOG_PAPERTRAIL_HANDLER', SyslogUdpHandler::class),
+            'handler' => SyslogUdpHandler::class,
             'handler_with' => [
                 'host' => env('PAPERTRAIL_URL', 'localhost'),
-                'port' => env('PAPERTRAIL_PORT', 514), // Default port for syslog
-                'connectionString' => 'tls://' . env('PAPERTRAIL_URL', 'localhost') . ':' . env('PAPERTRAIL_PORT', 514),
+                'port' => env('PAPERTRAIL_PORT', 514),
             ],
-            'processors' => [PsrLogMessageProcessor::class],
         ],
+
 
 
         'stderr' => [
