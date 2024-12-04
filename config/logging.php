@@ -82,18 +82,6 @@ return [
             'replace_placeholders' => true,
         ],
 
-        'papertrail' => [
-            'driver' => 'monolog',
-            'level' => env('LOG_LEVEL', 'debug'),
-            'handler' => SyslogUdpHandler::class,
-            'handler_with' => [
-                'host' => env('PAPERTRAIL_URL', 'localhost'),
-                'port' => env('PAPERTRAIL_PORT', 514),
-            ],
-        ],
-
-
-
         'stderr' => [
             'driver' => 'monolog',
             'level' => env('LOG_LEVEL', 'debug'),
